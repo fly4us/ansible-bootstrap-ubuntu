@@ -6,7 +6,7 @@
   notify:
     - restart fail2ban
 
-- name: Disallow password authentication
+- name: Setup sshd port
   lineinfile:
     dest=/etc/ssh/sshd_config
     regexp="^Port"
@@ -32,6 +32,15 @@
     state=present
   notify:
     - restart ssh
+
+- name: Disallow SSH GSS API authentication
+  lineinfile:
+    dest=/etc/ssh/sshd_config
+    regexp="^GSSAPIAuthentication"
+    line="GSSAPIAuthentication no"
+    state=present
+  notify:
+    - restart sshd
 
 - name: Delete /etc/sudoers.d/ files
   shell:
