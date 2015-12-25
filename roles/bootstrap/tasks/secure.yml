@@ -40,7 +40,7 @@
     line="GSSAPIAuthentication no"
     state=present
   notify:
-    - restart sshd
+    - restart ssh
 
 - name: Delete /etc/sudoers.d/ files
   shell:
