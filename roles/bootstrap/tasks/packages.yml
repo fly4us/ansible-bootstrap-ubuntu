@@ -1,6 +1,8 @@
 ---
 - name: Install packages
-  action: apt pkg={{ item }} state=installed
+  apt:
+    pkg={{ item }}
+    state=installed
   with_items:
     - vim
     - mc
