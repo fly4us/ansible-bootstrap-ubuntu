@@ -6,4 +6,5 @@
   with_items:
     - vim
     - mc
+    - openssh-server
 
