@@ -4,12 +4,12 @@
   sudo: yes
   roles:
     - user
- 
+
   vars_prompt:
     - name: "username"
       prompt: "Enter username"
       private: no
-   
+
     - name: "password"
       prompt: "Enter password"
       encrypt: "md5_crypt"
@@ -18,7 +18,7 @@
 
     - name: "id_rsa_path"
       prompt: "Enter id_rsa.pub path"
-      default: "~/.ssh/id_rsa.pub"
+      default: "../ssh/id_rsa.pub"
       private: no
 
     - name: "sudoers"
