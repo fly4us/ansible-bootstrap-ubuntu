@@ -1,14 +1,16 @@
 ---
-- name: Install fail2ban
-  apt:
-    pkg=fail2ban
-    state=installed
+- name: Setup fail2ban
+  template:
+    src=fail2ban/jail.local
+    dest=/etc/fail2ban/jail.local
+  notify:
+    - restart fail2ban
 
 - name: Disallow password authentication
   lineinfile:
     dest=/etc/ssh/sshd_config
     regexp="^Port"
-    line="Port 8002"
+    line="Port {{ sshd_port }}"
     state=present
   notify:
     - restart ssh
@@ -40,9 +42,9 @@
     pkg=ufw
     state=installed
 
-- name: Setup ufw 8002/tcp
+- name: Setup ufw {{ sshd_port }}/tcp
   shell:
-    ufw allow 8002/tcp
+    ufw allow {{ sshd_port }}/tcp
 
 - name: Enable ufw
   shell:
