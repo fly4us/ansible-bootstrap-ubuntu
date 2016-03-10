@@ -9,7 +9,7 @@
 - name: Setup sshd port
   lineinfile:
     dest=/etc/ssh/sshd_config
-    regexp="^Port"
+    regexp="^#?Port"
     line="Port {{ sshd_port }}"
     state=present
   notify:
@@ -18,7 +18,7 @@
 - name: Disallow password authentication
   lineinfile:
     dest=/etc/ssh/sshd_config
-    regexp="^PasswordAuthentication"
+    regexp="^#?PasswordAuthentication"
     line="PasswordAuthentication no"
     state=present
   notify:
@@ -27,7 +27,7 @@
 - name: Disallow root SSH access
   lineinfile:
     dest=/etc/ssh/sshd_config
-    regexp="^PermitRootLogin"
+    regexp="^#?PermitRootLogin"
     line="PermitRootLogin no"
     state=present
   notify:
@@ -36,7 +36,7 @@
 - name: Disallow SSH GSS API authentication
   lineinfile:
     dest=/etc/ssh/sshd_config
-    regexp="GSSAPIAuthentication"
+    regexp="^#?GSSAPIAuthentication"
     line="GSSAPIAuthentication no"
     state=present
   notify:
