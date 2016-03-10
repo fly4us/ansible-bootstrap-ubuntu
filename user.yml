@@ -26,14 +26,3 @@
       default: 'n'
       private: no
 
-- name: Bootstrap Ubuntu servers
-  hosts: localhost
-  sudo: yes
-  roles:
-    - bootstrap
-
-  vars_prompt:
-    - name: "sshd_port"
-      prompt: "Enter ssh port"
-      default: '22'
-      private: no
